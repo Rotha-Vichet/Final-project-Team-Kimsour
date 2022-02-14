@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Antonio:wght@300;400&family=Pacifico&display=swap');
+
+body::before{
+    display: block;
+    content: '';
+    height: 50px;
+}
+.label{
+    font-family: 'Antonio', sans-serif;
+}
+.title{
+    font-family: 'Pacifico', cursive;
+    margin-left: 1em;
+}
+a{
+    text-decoration: none;
+    
+}
+.container{
+    align-content: center;
+}
+.contents{
+    justify-self: center;
+    width: 20rem;
+}
+.form{
+    width: fit-content;
+}
+
+@media(min-width: 768px){
+    .news-input{
+        width: 50%;
+    }
+    .news-inputs{
+        width: 40%;
+    }
+    
+}
