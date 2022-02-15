@@ -1,0 +1,77 @@
+<div class="card mb-3">
+    <div class = "card-body">
+        <h5 class = "card-title">City Information</h5>
+        <button class="btn w-100 mt-2 btn-light border bg-secondary" data-bs-toggle="modal" data-bs-target="#post"><i class="bi bi-plus btn-lg"></i>Click to perform operation</button>
+        <!-- Table Content -->
+        <div class="container">
+            <div class="card">
+                <div class="card-header">
+                  City Repository
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Special title treatment</h5>
+                  <table class="table table-dark table-hover table-bordered">
+                    <thead>
+                      <tr>
+                        <th scope="col">#City ID</th>
+                        <th scope="col">City Name</th>
+                        <th scope="col">Country Name</th>
+                        <th scope = "col">Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let c of cityService.allCity">
+                        <td>{{c._id}}</td>
+                        <td>{{c.cityName}}</td>
+                        <td>{{c.country}}</td>
+                        <td>{{c.description}}</td>
+                        <td class="float-right">
+
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <a href="#" class="btn btn-primary">Logout </a>
+                </div>
+              </div>
+        </div>
+    </div>
+    <!-- Popup for input -->
+    <div class="modal fade modal-dialog-scrollable" id="post" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class = "modal-dialog">
+            <div class = "modal-content">
+                <div class = "modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Where did you visit?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>     
+                </div>
+                <div class = "modal-body">
+                    <form class="row g-3" [formGroup]="inputForm">
+                        <div class = "col-12">
+                            <label for="title" class ="form-label">ID:</label>
+                            <input type="text" class = "form-control" id="title" formControlName = "_id">
+                        </div>
+                        <div class = "col-md-6">
+                            <label for="inputCity" class="form-label">City</label>
+                            <input type="text" class="form-control" id="inputCity" formControlName = "cityName">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="country" class="form-label">Country:</label>
+                            <input type="text" class="form-control" id="country" formControlName = "country">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="country" class="form-label">Description:</label>
+                            <input type="text" class="form-control" id="country" formControlName = "description">
+                        </div>
+                        <button class="btn btn-secondary badge-pill" type="submit" (click)="add()">AddRecord</button>
+                        <button class="btn btn-primary badge-pill" type="submit" (click)="update()">Update</button>
+                        <button class="btn btn-danger badge-pill" type="submit" (click)="delete()">Delete</button>
+
+
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

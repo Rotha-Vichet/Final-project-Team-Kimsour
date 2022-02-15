@@ -5,11 +5,13 @@ var cookieParser = require('cookie-parser');
 var cors = require('cors')
 var logger = require('morgan');
 var mongoose = require('mongoose')
-var session = require('express-session')
 mongoose.connect("mongodb://localhost:27017/final_project")
+const passportLocalMongoose = 
+       require("passport-local-mongoose");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var cityRouter = require('./routes/city')
 
 var app = express();
 
@@ -18,7 +20,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(cors({
-  origin: ['http://localhost:4200','http://127.0.0.1:4200'],
+  origin: ['http://localhost:4200','http://127.0.0.1:4200','http://localhost:63386'],
   credentials: true
 }))
 
@@ -30,8 +32,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/city',cityRouter)
 // executer passport 
-const MongoStore = require('connect-mongo')(session);
+var session = require('express-session')
 
 app.use(session({
   name:'myname.sid',
@@ -43,7 +46,6 @@ app.use(session({
     httpOnly:false,
     secure:false
   },
-  store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));
 var passport = require('passport')
 app.use(passport.initialize());

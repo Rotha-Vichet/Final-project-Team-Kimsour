@@ -15,9 +15,8 @@ export class LoginComponent implements OnInit {
   
 
   constructor(private _router:Router,private _user:UserService) { }
-
   ngOnInit(): void {
-
+    
   }
   login(){
     if(!this.loginForm.valid){
@@ -28,17 +27,18 @@ export class LoginComponent implements OnInit {
     console.log(this._user.login(JSON.stringify(this.loginForm.value)))
     this._user.login(JSON.stringify(this.loginForm.value)).subscribe(
       
-      (data)=>{
-        console.log(data)
-        this._router.navigate(['/homepage'])
+      (data)=>{        
+        if(data){
+          this._router.navigate(['/homepage'])
+        }else{
+          this._router.navigate(['/login'])
+        }
+        
       },(err)=>{
         console.log(err)
       }
       
       
-      // (err)=>{
-      //   console.log(err)
-      // }
     )
   }
   moveToRegister(){

@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt');
-
+var passportLocalMongoose = require('passport-local-mongoose')
 var schema = new Schema({
     email : {type:String, require:true},
     username: {type:String, require:true},
@@ -16,5 +16,6 @@ schema.statics.hashPassword = function hashPassword(password){
 schema.methods.isValid = function(hashedpassword){
     return  bcrypt.compareSync(hashedpassword, this.password);
 }
+schema.plugin(passportLocalMongoose)
 
 module.exports = mongoose.model('User',schema);
